@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +16,10 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-primary">
     <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="../../index.php">Home</a>
                 <a class="nav-link" href="../../views/placa/ingreso.php">Consulte su horario</a>
@@ -29,13 +35,19 @@
             <h1 class="h1"><b>Pico y Placa</b></h1>
             <br>
             <div class="col-md-6 mx-auto">
-                <form action="" method="post">
+                <form action="../../controller/PlacaController.php" method="post">
                     <div class="mb-3 form-check">
                         <label class="form-label">Placa</label>
                         <input type="text" class="form-control" name="placa">
                     </div>
                     <button type="submit" class="btn btn-primary">Consultar</button>
                 </form>
+                <?php if(isset($_SESSION['mensaje'])):?>
+                    <div class="alert alert-primary mt-3" role="alert">
+                        <?php echo $_SESSION['mensaje']?>
+                    </div>
+                <?php endif;?>
+                <?php unset($_SESSION['mensaje'])?>
             </div>
         </div>
 
