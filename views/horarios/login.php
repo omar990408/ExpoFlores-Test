@@ -1,3 +1,11 @@
+<?php
+require_once "../../helpers/Utils.php";
+//session_start();
+if (isset($_SESSION['login']) && $_SESSION['login'] && isset($_SESSION['mantener_sesion']) && $_SESSION['mantener_sesion']) {
+    header("Location:adminPage.php");
+     die();
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,16 +40,23 @@
             <h1 class="h1"><b>Pico y Placa</b></h1>
             <br>
             <div class="col-md-6 mx-auto">
-                <form action="" method="post">
+                <form action="../../controller/AdminController.php" method="post">
                     <div class="mb-3 form-check">
                         <label class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="placa" required>
+                        <input type="text" class="form-control" name="usuario" required>
                     </div>
                     <div class="mb-3 form-check">
                         <label class="form-label">Contraseña</label>
                         <input type="password" class="form-control" name="clave" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <?php if (isset($_SESSION['login']) && !$_SESSION['login']): ?>
+                        <div class="alert alert-danger mt-3" role="alert">
+                            Credenciales incorrectas
+                        </div>
+                        <?php Utils::deleteSession("login") ?>
+                    <?php endif; ?>
+                    <?php Utils::deleteSession("login") ?>
                 </form>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
-session_start();
+//session_start();
+require_once "../../helpers/Utils.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,7 +39,7 @@ session_start();
                 <form action="../../controller/PlacaController.php" method="post">
                     <div class="mb-3 form-check">
                         <label class="form-label">Placa</label>
-                        <input type="text" class="form-control" name="placa">
+                        <input type="text" class="form-control" name="placa" placeholder="PPP0000" minlength="6" maxlength="7" pattern="^[A-Z]{3}\d{3,4}$">
                     </div>
                     <button type="submit" class="btn btn-primary">Consultar</button>
                 </form>
@@ -47,7 +48,7 @@ session_start();
                         <?php echo $_SESSION['mensaje']?>
                     </div>
                 <?php endif;?>
-                <?php unset($_SESSION['mensaje'])?>
+                <?php Utils::deleteSession("mensaje")?>
             </div>
         </div>
 

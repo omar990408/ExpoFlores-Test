@@ -9,9 +9,7 @@ if (isset($_POST)) {
     if ($placa) {
         $placa = new Placa($placa);
         $restriccion = $placa->getRestriccion();
-        $horario = new Horario("6:00", "9:30");
-        $horario2 = new Horario("16:00", "20:00");
-        $mensaje = "La placa ".$placa->getPlaca()." tiene restricción el día $restriccion de ".$horario->getHoraInicio()." a ".$horario->getHoraFin()." y de ".$horario2->getHoraInicio()." a ".$horario2->getHoraFin();
+        $mensaje = "La placa ".$placa->getPlaca()." tiene restricción el día $restriccion";
         var_dump($mensaje);
         $_SESSION['mensaje'] = $mensaje;
     }

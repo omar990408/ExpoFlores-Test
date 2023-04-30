@@ -1,3 +1,9 @@
+<?php
+require_once "helpers/Utils.php";
+if (empty($_SESSION)) {
+    Utils::Horarios();
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
